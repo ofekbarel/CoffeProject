@@ -1,0 +1,27 @@
+        body {
+            background-color: #f0f0f9; /* רקע בהיר */
+            font-family: Arial, sans-serif; /* גופן */
+        }
+
+        h1 {
+            text-align: center; /* כותרת באמצע */
+            font-family: fantasy; /* פונט כותרת */
+        }
+
+        ul {
+
+
+        li {
+            background-color: #ffffff; /* רקע לרשימה */
+            margin-bottom: 10px; /* מרווח בין פריטי הרשימה */
+            padding: 10px; /* ריווח פנימי לפריטי הרשימה */
+            border-radius: 5px; /* פינות מעוגלות */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* צל עדין */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* אנימציה */
+            font-family: Baskerville, serif; /* פונט פריטי רשימה */
+        }
+
+        li:hover {
+            background-color: #f9f9f9; /* שינוי צבע רקע בהעברת העכבר מעל הפריט */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* שינוי צל בהעברת העכבר מעל הפריט */
+        }
