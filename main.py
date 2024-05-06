@@ -2,6 +2,9 @@ from flask import Flask, request, render_template, redirect, url_for
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 import bcrypt
+import random
+from sqlalchemy import func
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/users'
@@ -63,7 +66,7 @@ with app.app_context():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index2.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -103,7 +106,7 @@ def login():
 @login_required  # Protect this route with login requirement
 def dashboard():
     if current_user.is_authenticated:
-        return render_template('dashboard.html', user=current_user)
+        return render_template('dashboard2.html', user=current_user)
     else:
         return redirect(url_for('login'))  # Redirect to login if not logged in
 
@@ -159,9 +162,26 @@ def add_privet_recipe():
 def my_recipes():
     if current_user.is_authenticated:
         user_recipes = PrivetRecipe.query.filter_by(user_id=current_user.id).all()
-        return render_template('my_recipes.html', user_recipes=user_recipes)
+        return render_template('my_recipes2.html', user_recipes=user_recipes)
     else:
         return redirect(url_for('login'))
+
+
+@app.route('/random_recipe')
+def random_recipe():
+    random_recipe = PublicRecipe.query.order_by(func.random()).first()
+    return render_template('random_recipe.html', random_recipe=random_recipe)
+
+
+@app.route('/delete_recipe/<int:recipe_id>', methods=['POST'])
+@login_required  # Protect this route with login requirement
+def delete_recipe(recipe_id):
+    if current_user.is_authenticated:
+        recipe = PrivetRecipe.query.get_or_404(recipe_id)
+        db.session.delete(recipe)
+        db.session.commit()
+    return redirect(url_for('my_recipes'))
+
 
 
 if __name__ == '__main__':

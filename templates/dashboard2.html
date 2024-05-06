@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('../static/1.jpg'); /* הגדר תמונת רקע */
+            background repeat: repeat; /* ודא שהתמונה מכסה את כל המסך */
+            background-position: center; /* מרכז את התמונה */
+            font-family: sans-serif; /* בחר פונט גנרי */
+            text-align: center; /* מרכז את הטקסט אופקית */
+            color: white; /* הגדר צבע טקסט לבן */
+        }
+
+        .container {
+            max-width: 800px; /* הגדר רוחב מרבי לתכולה */
+            margin: 0 auto; /* מרכז את התכולה אופקית */
+            padding: 20px;
+        }
+
+        .buttons {
+            display: flex; /* הצג את הכפתורים בשורה */
+            justify-content: space-around; /* פזר את הכפתורים באופן שווה */
+            margin-top: 200px; /* הוסף מרווח מעל הכפתורים */
+        }
+
+        .button {
+            padding: 20px 40px; /* הוסף מרווח סביב לטקסט בכפתורים */
+            background-color: black; /* הגדר צבע שחור לכפתורים */
+            color: white; /* הגדר צבע טקסט לבן */
+            border: none; /* הסר גבול מהכפתורים */
+            border-radius: 10px; /* עגל את פינות הכפתורים */
+            cursor: pointer; /* הצג סמן יד כאשר העכבר מרחף מעל הכפתור */
+            text-decoration: none; /* הסר קישוט מהטקסט בכפתורים */
+            font-family: 'Comic Sans MS', cursive; /* הגדר פונט Comic Sans MS */
+            font-size: 24px; /* הגדר גודל פונט גדול יותר */
+        }
+
+        .button:hover {
+            background-color: #333; /* שנה את צבע הכפתור בעת ריחוף העכבר */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Dashboard</h1>
+    <p><b>Name: </b> {{user.name }}</p>
+    <p><b>Email: </b> {{user.email }}</p>
+
+    <div class="buttons">
+        <a href="/add_privet_recipe" class="button">Add Privet Recipe </a>
+        <a href="/all_recipes" class="button">All Recipes</a>
+        <a href="/my_recipes" class="button">My Recipes</a>
+        <a href="/random_recipe" class="button">Random Recipe</a>
+        <a href="/logout" class="button">Logout</a>
+        <a href="/add_public_recipe" class="button">Add Public Recipe</a>
+
+
+    </div>
+</div>
+</body>
+</html>
