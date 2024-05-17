@@ -2,8 +2,8 @@ from flask import Flask, request, render_template, redirect, url_for
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 import bcrypt
-import random
 from sqlalchemy import func
+
 
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ db = SQLAlchemy(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = 'login'  # Redirect to login if unauthorized
+login_manager.login_view = 'login'
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -67,6 +67,9 @@ with app.app_context():
 @app.route('/')
 def index():
     return render_template('index2.html')
+
+
+
 
 
 @app.route('/register', methods=['GET', 'POST'])
