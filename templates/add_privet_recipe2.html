@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Privet Recipe</title>
+    <style>
+           body {
+            margin: 0;
+            padding: 0;
+            background-image: url('../static/1.jpg'); /* הגדר תמונת רקע */
+            background-repeat: repeat; /* ודא שהתמונה מכסה את כל המסך */
+            background-position: center; /* מרכז את התמונה */
+            font-family: sans-serif; /* בחר פונט גנרי */
+            text-align: center; /* מרכז את הטקסט אופקית */
+            color: white; /* הגדר צבע טקסט לבן */
+        }
+        /* עיצוב נוסף לשדה הטקסט כותרת */
+        input[type="text"]#title {
+            width: 30%; /* רוחב של 30% מהעמוד */
+            padding: 12px 20px; /* מרווחים בתוך השדה */
+            margin: 8px auto; /* מרווחים מעליון ומתחת לשדה, ומרכז על מנת להקטין את הרוחב */
+            box-sizing: border-box; /* גודל השדה כולל את המרווחים והפריטים הפנימיים */
+            border: 2px solid #ccc; /* מסגרת סולידית של 2 פיקסלים בצבע אפור */
+            border-radius: 4px; /* רינוע עגול לשדה */
+            background-color: #f8f8f8; /* צבע רקע לשדה */
+            resize: none; /* אפשרות לשינוי גודל התיבה */
+            font-size: 16px; /* גודל הכתב */
+        }
+        /* עיצוב נוסף לתיבת הטקסט הרחבה */
+        textarea {
+            width: 80%; /* רוחב של 80% מהעמוד */
+            height: 200px; /* גובה של 200 פיקסלים */
+            padding: 12px 20px; /* מרווחים בתוך השדה */
+            margin: 8px auto; /* מרווחים מעליון ומתחת לשדה, ומרכז על מנת להקטין את הרוחב */
+            box-sizing: border-box; /* גודל השדה כולל את המרווחים והפריטים הפנימיים */
+            border: 2px solid #ccc; /* מסגרת סולידית של 2 פיקסלים בצבע אפור */
+            border-radius: 4px; /* רינוע עגול לשדה */
+            background-color: #f8f8f8; /* צבע רקע לשדה */
+            resize: none; /* אפשרות לשינוי גודל התיבה */
+            font-size: 16px; /* גודל הכתב */
+        }
+        /* עיצוב נוסף לכפתור השליחה */
+        input[type="submit"] {
+            margin-top: 10px; /* מרווח עליון לכפתור */
+            background-color: #4CAF50; /* צבע רקע לכפתור */
+            color: white; /* צבע טקסט לכפתור */
+            padding: 10px 20px; /* גודל הכפתור */
+            border: none; /* אין מסגרת לכפתור */
+            border-radius: 5px; /* רינוע עגול לכפתור */
+            cursor: pointer; /* הפנה סמל למקש */
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Add private Recipe</h1>
+    <form method="POST">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

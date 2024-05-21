@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Recipe</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('../static/1.jpg'); /* הגדר תמונת רקע */
+            background-repeat: repeat; /* ודא שהתמונה מכסה את כל המסך */
+            background-position: center; /* מרכז את התמונה */
+            font-family: sans-serif; /* בחר פונט גנרי */
+            text-align: center; /* מרכז את הטקסט אופקית */
+            color: white; /* הגדר צבע טקסט לבן */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+            color: #333;
+        }
+
+        .recipe {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .recipe h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .recipe p {
+            color: #666;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Recipe</h1>
+        <div class="recipe">
+            <h2>{{ random_recipe.title }}</h2>
+            <p>{{ random_recipe.description }}</p>
+        </div>
+        <a href="{{ url_for('random_recipe') }}" class="back-link">Show Another Random Recipe</a>
+    </div>
+</body>
+</html>

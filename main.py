@@ -143,7 +143,7 @@ def add_public_recipe():
         db.session.commit()
 
         return redirect(url_for('dashboard'))
-    return render_template('add_public_recipe.html')
+    return render_template('add_public_recipe2.html')
 
 
 @app.route('/add_privet_recipe', methods=['GET', 'POST'])
@@ -159,7 +159,7 @@ def add_privet_recipe():
 
         return redirect(url_for('dashboard'))
 
-    return render_template('add_privet_recipe.html')
+    return render_template('add_privet_recipe2.html')
 
 
 @app.route('/my_recipes')
@@ -175,7 +175,7 @@ def my_recipes():
 @app.route('/random_recipe')
 def random_recipe():
     random_recipe = PublicRecipe.query.order_by(func.random()).first()
-    return render_template('random_recipe.html', random_recipe=random_recipe)
+    return render_template('random_recipe2.html', random_recipe=random_recipe)
 
 
 @app.route('/delete_recipe/<int:recipe_id>', methods=['POST'])
@@ -186,6 +186,11 @@ def delete_recipe(recipe_id):
         db.session.delete(recipe)
         db.session.commit()
     return redirect(url_for('my_recipes'))
+
+@app.route('/gallery')
+def gallery():
+    images = os.listdir('static')
+    return render_template('gallery.html', images=images)
 
 
 
