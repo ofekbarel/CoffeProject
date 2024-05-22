@@ -1,6 +1,6 @@
 import os
-
-from flask import Flask, request, render_template, redirect, url_for
+from sqlalchemy.exc import IntegrityError
+from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 import bcrypt
@@ -82,9 +82,15 @@ def register():
         email = request.form['email']
         password = request.form['password']
 
-        new_user = User(name=name, email=email, password=password)
-        db.session.add(new_user)
-        db.session.commit()
+        try:
+            new_user = User(name=name, email=email, password=password)
+            db.session.add(new_user)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()  # ביטול שינויים במקרה של חריגה
+            flash('Email already exists. Please use a different email.', 'error')
+            return redirect(url_for('register'))  # Redirect back to registration page with error message
+
         return redirect(url_for('login'))  # Use url_for for better routing
 
     return render_template('register.html')
