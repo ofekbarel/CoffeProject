@@ -7,10 +7,15 @@ import bcrypt
 from sqlalchemy import func, Text
 
 
+#we can choose to run the application in localhost or k8s cluster
+
+password = os.getenv('POSTGRES_USER')           #k8s
+username = os.getenv('POSTGRES_PASSWORD')       #k8s
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/users'
-app.config['SECRET_KEY'] = 'your_secret_key'  # Replace with a strong secret key
+##app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/users'             #localhost
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{username}:{password}@postgres:5432/test'       #k8s
+app.config['SECRET_KEY'] = 'your_secret_key'
 db = SQLAlchemy(app)
 
 login_manager = LoginManager()

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: flask
-          image: 'ofekbarel11/one:26'
+          image: 'ofekbarel11/one:51'
           ports:
             - containerPort: 5000
           envFrom:
