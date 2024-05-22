@@ -4,7 +4,7 @@ from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 import bcrypt
-from sqlalchemy import func
+from sqlalchemy import func, Text
 
 
 
@@ -37,7 +37,7 @@ class User(db.Model, UserMixin):
 class PrivetRecipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(1000), unique=True)
+    description = db.Column(Text)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self, title, description, user_id):
@@ -49,7 +49,7 @@ class PrivetRecipe(db.Model):
 class PublicRecipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(1000), unique=True)
+    description = db.Column(Text)
 
 
     def __init__(self, title, description):
@@ -87,10 +87,9 @@ def register():
             db.session.add(new_user)
             db.session.commit()
         except IntegrityError:
-            db.session.rollback()  # ביטול שינויים במקרה של חריגה
+            db.session.rollback()
             flash('Email already exists. Please use a different email.', 'error')
             return redirect(url_for('register'))  # Redirect back to registration page with error message
-
         return redirect(url_for('login'))  # Use url_for for better routing
 
     return render_template('register.html')

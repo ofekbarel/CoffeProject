@@ -1,11 +1,12 @@
-FROM python:3.8-slim  
+FROM python:3.8-slim-buster
 
+RUN apt-get update && \
+    apt-get install -y libpq-dev gcc
 WORKDIR /app
 
-RUN pip install flask flask_login flask_sqlalchemy bcrypt psycopg2
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
 
-COPY . .  
+COPY . .
 
-EXPOSE 5000  
-
-CMD ["python3", "main.py"]
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
