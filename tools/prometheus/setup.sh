@@ -12,4 +12,4 @@ kubectl get all
 
 kubectl get svc -n monitor prometheus-server
 
-kubectl expose service prometheus-server --type=LoadBalancer --target-port=9090 --name=prometheus-server-ext -n monitor
+kubectl patch svc prometheus-server -n monitor -p '{"spec": {"type": "LoadBalancer"}}'
