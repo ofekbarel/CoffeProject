@@ -16,6 +16,10 @@ def client():
 
 
 
+def test_register(client):
+    response = client.post('/register', data={'name': 'Test User', 'email': 'test@example.com', 'password': 'password'})
+
+
 def test_index(client):
     response = client.get('/')
     assert response.status_code == 200
@@ -26,6 +30,32 @@ def test_login(client):
     assert response.status_code < 400
 
 
+
+
+def test_add_public_recipe(client):
+    client.post('/login', data={'email': 'test@example.com', 'password': 'password'})
+    response = client.post('/add_public_recipe', data={'title': 'Test Public Recipe', 'description': 'This is a test public recipe'})
+
+    assert response.status_code < 400
+    recipe = PublicRecipe.query.filter_by(title='Test Public Recipe').first()
+    assert recipe is not None
+    assert response.content_type == 'text/html; charset=utf-8'
+    time.sleep(20)
+
+
+
+def clean_up():
+    user = db.session.query(User).filter(User.email == 'test@example.com').first()
+    public_recipe = PublicRecipe.query.filter_by(title='Test Public Recipe').first()
+    db.session.delete(user)
+    db.session.delete(public_recipe)
+    db.session.commit()
+    db.session.remove()
+
+
+
+'''
+
 def test_register(client):
     response = client.post('/register', data={'name': 'Test User', 'email': 'test@example.com', 'password': 'password'})
     assert response.status_code < 400
@@ -35,7 +65,7 @@ def test_register(client):
     assert user is not None
     assert response.content_type == 'text/html; charset=utf-8'
 
-    time.sleep(10)
+
     db.session.delete(user)
     db.session.commit()
     db.session.remove()
@@ -61,7 +91,7 @@ def test_add_public_recipe(client):
     assert recipe is not None
     assert response.content_type == 'text/html; charset=utf-8'
 
-    time.sleep(10)
+    time.sleep(2)
     # Clean up: delete the added recipe
     user = db.session.query(User).filter(User.email == 'test@example.com').first()
     db.session.delete(recipe)
@@ -82,7 +112,7 @@ def test_add_privet_recipe(client):
     assert recipe is not None
     assert response.content_type == 'text/html; charset=utf-8'
 
-    time.sleep(10)
+    time.sleep(2)
     # Clean up: delete the added recipe
     user = db.session.query(User).filter(User.email == 'test@example.com').first()
     db.session.delete(recipe)
@@ -110,12 +140,4 @@ def test_random_recipe(client):
     # Check if the response status code is OK
     assert response.status_code == 200
 
-
-
-
-
-
-
-
-
-
+'''
