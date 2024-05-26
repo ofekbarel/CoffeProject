@@ -1,0 +1,62 @@
+pipeline {
+    agent {
+        kubernetes {
+            yaml '''
+            apiVersion: v1
+            kind: Pod
+            metadata:
+            spec:
+                containers:
+                - name: docker-compose
+                  image: docker/compose:latest
+                  command: ["sleep"]
+                  args: ["infinity"]
+                  imagePullPolicy: Always
+                  securityContext:
+                      privileged: true
+                  volumeMounts:
+                      - name: docker-socket
+                      mountPath: /var/run/docker.sock
+
+            '''
+        }
+    }
+
+    environment {
+        DOCKER_IMAGE = "ofekbarel11/finalprojectt"
+
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+
+        stage('Build Docker Image') {
+            steps {
+                container('docker-compose') {
+                    script {
+                    // Build and tag Docker image for feature branches
+                        dockerImage = docker.build("${DOCKER_IMAGE}:latest", "--no-cache .")
+                    }
+                }
+            }
+        }
+
+
+        stage ('Push Docker image') {
+            steps {
+                container('docker-compose') {
+                    script {
+                        docker.withRegistry('https://registry.hub.docker.com', 'ofek-Dockerhub' ) {
+                            dockerImage.push("latest")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
