@@ -7,18 +7,19 @@ pipeline {
             metadata:
             spec:
                 containers:
-                - name: docker-compose
-                  image: docker/compose:latest
-                  command: ["sleep"]
-                  args: ["infinity"]
-                  imagePullPolicy: Always
-
+                - name: docker
+                  image: docker:latest
+                  command:
+                  - cat
+                  tty: true
+                  volumeMounts:
+                   - mountPath: /var/run/docker.sock
+                     name: docker-sock
                 volumes:
-                    - name: docker-socket
-                      hostPath:
-                        path: /var/run/docker.sock
-                        type: Socket
-
+                - name: docker-sock
+                    hostPath:
+                    path: /var/run/docker.sock    
+        
             '''
         }
     }
@@ -38,7 +39,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                container('docker-compose') {
+                container('docker') {
                     script {
                     // Build and tag Docker image for feature branches
                         dockerImage = docker.build("${DOCKER_IMAGE}:latest", "--no-cache .")
@@ -50,7 +51,7 @@ pipeline {
 
         stage ('Push Docker image') {
             steps {
-                container('docker-compose') {
+                container('docker') {
                     script {
                         docker.withRegistry('https://registry.hub.docker.com', 'ofek-Dockerhub' ) {
                             dockerImage.push("latest")
