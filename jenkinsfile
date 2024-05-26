@@ -1,10 +1,68 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 pipeline {
     agent {
         kubernetes {
-            label 'ez-joy-friends'
-            idleMinutes 5
-            yamlFile 'build-pod.yaml'
-            defaultContainer 'ez-docker-helm-build'
+            yaml '''
+            apiVersion: v1
+            kind: Pod
+            metadata:
+            name: docker-image-build
+            spec:
+            containers:
+                - name: ez-docker-helm-build
+                image: ezezeasy/ez-docker-helm-build:1.41
+                imagePullPolicy: Always
+                securityContext:
+                    privileged: true
+
+                - name: python-test
+                image: python:3.9-slim
+                command: ["sleep"]
+                args: ["infinity"]
+                imagePullPolicy: Always
+                securityContext:
+                    privileged: false
+
+                - name: docker-compose
+                image: docker/compose:latest
+                command: ["sleep"]
+                args: ["infinity"]
+                imagePullPolicy: Always
+                securityContext:
+                    privileged: true
+                volumeMounts:
+                    - name: docker-socket
+                    mountPath: /var/run/docker.sock
+
+            volumes:
+                - name: docker-socket
+                hostPath:
+                    path: /var/run/docker.sock
+                    type: Socket
+            '''
         }
     }
     environment {
@@ -22,7 +80,7 @@ pipeline {
             }
         }
 
-         stage('Build Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     // Build and tag Docker image for feature branches
@@ -34,31 +92,33 @@ pipeline {
 
         stage('Build Test Docker image and Run Tests') {
             steps {
-                script {
-                    // Create a custom Docker network
-                    sh 'docker network create coffee-app-net'
-                    
-                    // Build the Docker test image
-                    def testDockerImage = docker.build("coffee-app-test:${BUILD_NUMBER}", "-f Dockerfile.test .")
-                    
-                    // Start MongoDB container on the custom network
-                    sh 'docker run --name postgres \
-                            --network coffee-app-net \
-                            -e POSTGRES_PASSWORD=testpostgres \
-                            -e POSTGRES_USER=testpostgres \
-                            -e POSTGRES_DB=test\
-                            postgres:14'
-                    
-                    // Wait for MongoDB to fully start
-                    sh 'sleep 15'
-                    
-                    // Run the test container on the custom network, ensure the MONGO_URI environment variable
-                    // is set within the container to use the MongoDB container's hostname
-                    sh 'docker run --name coffee-app-test-container \
-                            --network coffee-app-net \
-                            -e POSTGRES_PASSWORD=testpostgres \
-                            -e POSTGRES_USER=testpostgres \
-                            coffee-app-test:${BUILD_NUMBER}'
+                container('docker-compose') {
+                    script {
+                        // Create a custom Docker network
+                        sh 'docker network create coffee-app-net'
+                        
+                        // Build the Docker test image
+                        def testDockerImage = docker.build("coffee-app-test:${BUILD_NUMBER}", "-f Dockerfile.test .")
+                        
+                        // Start MongoDB container on the custom network
+                        sh 'docker run --name postgres \
+                                --network coffee-app-net \
+                                -e POSTGRES_PASSWORD=testpostgres \
+                                -e POSTGRES_USER=testpostgres \
+                                -e POSTGRES_DB=test\
+                                postgres:14'
+                        
+                        // Wait for MongoDB to fully start
+                        sh 'sleep 15'
+                        
+                        // Run the test container on the custom network, ensure the MONGO_URI environment variable
+                        // is set within the container to use the MongoDB container's hostname
+                        sh 'docker run --name coffee-app-test-container \
+                                --network coffee-app-net \
+                                -e POSTGRES_PASSWORD=testpostgres \
+                                -e POSTGRES_USER=testpostgres \
+                                coffee-app-test:${BUILD_NUMBER}'
+                    }
                 }
             }
         }
@@ -70,7 +130,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'meital-dockerhub-cred' ) {
+                    docker.withRegistry('https://registry.hub.docker.com', 'ofek-Dockerhub' ) {
                         dockerImage.push("latest")
                     }
                 }
@@ -95,7 +155,7 @@ pipeline {
                         --form "source_branch=${env.BRANCH_NAME}" \
                         --form "target_branch=main" \
                         --form "title=MR from ${env.BRANCH_NAME} into main" \
-                        --form "remove_source_branch=true"
+                        --form "remove_source_branch=false"
                         """, returnStdout: true).trim()
                         if (response.startsWith("20")) {
                             echo "Merge request created successfully."
@@ -113,6 +173,14 @@ pipeline {
 
 
     post {
+        failure {
+            emailext body: 'The build failed. Please check the build logs for details.',
+                     subject: "Build failed: ${currentBuild.fullDisplayName}",
+                     to: 'ofekbarel10@gmail.com'
+        }
+
+
+
         always {
             // Cleanup MongoDB container, the test container, and the custom network
             // to ensure no conflicts on subsequent runs

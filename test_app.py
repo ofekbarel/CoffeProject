@@ -35,7 +35,7 @@ def test_register(client):
     assert user is not None
     assert response.content_type == 'text/html; charset=utf-8'
 
-    time.sleep(10)
+
     db.session.delete(user)
     db.session.commit()
     db.session.remove()
@@ -61,7 +61,6 @@ def test_add_public_recipe(client):
     assert recipe is not None
     assert response.content_type == 'text/html; charset=utf-8'
 
-    time.sleep(10)
     # Clean up: delete the added recipe
     user = db.session.query(User).filter(User.email == 'test@example.com').first()
     db.session.delete(recipe)
@@ -82,7 +81,7 @@ def test_add_privet_recipe(client):
     assert recipe is not None
     assert response.content_type == 'text/html; charset=utf-8'
 
-    time.sleep(10)
+
     # Clean up: delete the added recipe
     user = db.session.query(User).filter(User.email == 'test@example.com').first()
     db.session.delete(recipe)
