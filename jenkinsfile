@@ -12,11 +12,7 @@ pipeline {
                   command: ["sleep"]
                   args: ["infinity"]
                   imagePullPolicy: Always
-                  securityContext:
-                      privileged: true
-                  volumeMounts:
-                      - name: docker-socket
-                      mountPath: /var/run/docker.sock
+                  
 
             '''
         }
