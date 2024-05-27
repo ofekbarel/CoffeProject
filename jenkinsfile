@@ -21,6 +21,7 @@ pipeline {
                 - name: POSTGRES_DB
                   value: "test"
 
+
             '''
         }
     }
