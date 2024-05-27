@@ -94,7 +94,7 @@ pipeline {
             }
             steps {
                 script {
-                    withRegistry([credentialsId: 'ofek-Dockerhub', url: 'https://registry.hub.docker.com']) {
+                    withDockerRegistry([credentialsId: 'ofek-Dockerhub', url: 'https://registry.hub.docker.com']) {
                         container('docker') {
                             sh 'docker build -t ${DOCKER_IMAGE}:latest .'
                             sh 'docker push ${DOCKER_IMAGE}:latest'
