@@ -22,23 +22,7 @@ pipeline {
                   value: "test"
                 - name: HOST
                   value: "localhost"
-              - name: docker
-                image: docker:latest
-                command:
-                - cat
-                tty: true
-                volumeMounts:
-                - mountPath: /var/run/docker.sock
-                name: docker-sock
-                securityContext:
-                  privileged: true
-            volumes:
-            - name: docker-sock
-                hostPath:
-                path: /var/run/docker.sock
-
-
-
+    
             '''
         }
     }
@@ -88,24 +72,27 @@ pipeline {
         }
 
 
-        stage('Build-Docker-Image') {
+
+
+        stage('merge request') {
             when {
-                branch 'main'
+                branch 'feature'
             }
-            steps {
+            steps{
                 script {
-                    withDockerRegistry([credentialsId: 'ofek-Dockerhub', url: 'https://registry.hub.docker.com']) {
-                        container('docker') {
-                            sh 'docker build -t ${DOCKER_IMAGE}:latest .'
-                            sh 'docker push ${DOCKER_IMAGE}:latest'
-                        }
+                    withCredentials([usernamePassword(credentialsId: 'github-credentials', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_TOKEN')]) {
+                        sh """
+                        curl -X POST -u ${GITHUB_USER}:${GITHUB_TOKEN} -d '{
+                            "title": "Merge feature to main",
+                            "head": "feature",
+                            "base": "main"
+                        }' https://api.github.com/repos/ofekbarel/Final-Project/pulls
+                        """
                     }
                 }
             }
         }
-
     }
-
 
 
 
