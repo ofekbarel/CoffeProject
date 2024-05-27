@@ -20,6 +20,8 @@ pipeline {
                   value: "postgres"
                 - name: POSTGRES_DB
                   value: "test"
+                - name: HOST
+                  value: "localhost"
 
 
             '''
