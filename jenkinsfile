@@ -22,11 +22,23 @@ pipeline {
                   value: "test"
                 - name: HOST
                   value: "localhost"
+              - name: docker
+                image: docker:latest
+                command: ["cat"]
+                tty: true
 
 
             '''
         }
     }
+
+
+    environment{
+        DOCKER_IMAGE = "ofekbarel11/coffeproject"
+
+    }
+
+
 
     stages{
         stage('Checkout Code') {
@@ -43,11 +55,38 @@ pipeline {
                     sh 'mvn -version'
                 }
             }
-
         }
 
+        
 
+        //build and push docker image if brnach is main
+        stage ('Build and Push Docker image') {
+            when {
+                branch 'main'
+            }
+            steps {
+                container('docker'){
+                    script {
+                        // Build Docker image
+                        dockerImage = docker.build("${DOCKER_IMAGE}:latest", "--no-cache .")
+
+                        // Push Docker image
+                        docker.withRegistry('https://registry.hub.docker.com', 'ofek-Dockerhub' ) {
+                            dockerImage.push("latest")
+                        }
+                    }
+                }
+            }
+        }
+        
+
+
+
+        //test test_app.py inside postgres container if branch is feature
         stage('test') {
+            when {
+                branch 'feature'
+            }
             steps{
                 container('postgres') {
                     // Install python and pytest
@@ -59,6 +98,7 @@ pipeline {
             }
         }
     }
+
 
 
 
