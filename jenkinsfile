@@ -22,6 +22,11 @@ pipeline {
                   value: "test"
                 - name: HOST
                   value: "localhost"
+              - name: docker
+                image: docker:latest
+                command:
+                - cat
+                tty: true
     
             '''
         }
@@ -48,6 +53,30 @@ pipeline {
             steps{
                 container('maven'){
                     sh 'mvn -version'
+                }
+            }
+        }
+
+
+
+
+
+        stage('Build and Push Docker Image') {
+            when {
+                branch 'main'
+            }
+            steps {
+                container('docker') {
+                    script {
+                        // Build Docker image
+                        sh "docker build -t ${DOCKER_IMAGE}:${env.BUILD_NUMBER} ."
+                        
+                        // Push Docker image to Docker Hub
+                        withDockerRegistry([credentialsId: 'ofek-Dockerhub', url: 'https://registry.hub.docker.com']) {
+                            sh "docker push ${DOCKER_IMAGE}:${env.BUILD_NUMBER}"
+                        }
+                        
+                    }
                 }
             }
         }
