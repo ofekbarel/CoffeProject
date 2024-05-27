@@ -7,7 +7,7 @@ import bcrypt
 from sqlalchemy import func, Text
 
 
-#we can choose to run the application in localhost or k8s cluster
+#we can choose to run the application in localhost or k8s clusterr
 
 #password = os.getenv('POSTGRES_USER')           #k8s
 #username = os.getenv('POSTGRES_PASSWORD')       #k8s
