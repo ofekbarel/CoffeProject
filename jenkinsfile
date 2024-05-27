@@ -32,11 +32,13 @@ pipeline {
                 name: docker-sock
                 securityContext:
                   privileged: true
-            volumes:
+              volumes:
             - name: docker-sock
                 hostPath:
                 path: /var/run/docker.sock
 
+            
+                
 
 
             '''
