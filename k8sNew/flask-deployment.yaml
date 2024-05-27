@@ -1,5 +1,4 @@
-apiVersion: v1    #9
-apiVersion: apps/v1      
+apiVersion: apps/v1         #9
 kind: Deployment
 metadata:
   name: flask
@@ -17,7 +16,7 @@ spec:
     spec:
       containers:
         - name: flask
-          image: 'ofekbarel11/one:51'
+          image: 'ofekbarel11/one:52'
           ports:
             - containerPort: 5000
           envFrom:
