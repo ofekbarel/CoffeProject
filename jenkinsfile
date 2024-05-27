@@ -86,12 +86,21 @@ pipeline {
 
 
         stage('Build-Docker-Image') {
+            when {
+                branch 'main'
+            }
             steps {
-                container('docker') {
-                    sh 'docker build -t ss69261/testing-image:latest .'
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'ofek-Dockerhub') {
+                        container('docker') {
+                            sh 'docker build -t ${DOCKER_IMAGE}:latest .'
+                            sh 'docker push ${DOCKER_IMAGE}:latest'
+                        }
+                    }
                 }
             }
         }
+
     }
 
 
