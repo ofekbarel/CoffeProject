@@ -30,10 +30,12 @@ pipeline {
                 volumeMounts:
                 - mountPath: /var/run/docker.sock
                 name: docker-sock
+                securityContext:
+                  privileged: true
             volumes:
             - name: docker-sock
                 hostPath:
-                path: /var/run/docker.sock 
+                path: /var/run/docker.sock
 
 
             '''
@@ -91,7 +93,7 @@ pipeline {
             }
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'ofek-Dockerhub', url: 'https://registry.hub.docker.com') {
+                    withRegistry([credentialsId: 'ofek-Dockerhub', url: 'https://registry.hub.docker.com']) {
                         container('docker') {
                             sh 'docker build -t ${DOCKER_IMAGE}:latest .'
                             sh 'docker push ${DOCKER_IMAGE}:latest'
