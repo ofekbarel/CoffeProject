@@ -38,6 +38,7 @@ pipeline {
                 path: /var/run/docker.sock
 
 
+
             '''
         }
     }
