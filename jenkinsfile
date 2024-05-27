@@ -65,7 +65,7 @@ pipeline {
                 branch 'main'
             }
             steps {
-                container('postgres'){
+                container('docker'){
                     script {
                         // Build Docker image
                         dockerImage = docker.build("${DOCKER_IMAGE}:latest", "--no-cache .")
