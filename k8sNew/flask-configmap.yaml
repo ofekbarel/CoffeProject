@@ -7,3 +7,4 @@ metadata:
 data:
   POSTGRES_DB: test
   POSTGRES_USER: postgres
+  HOST: postgres
