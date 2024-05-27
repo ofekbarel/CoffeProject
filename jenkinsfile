@@ -86,8 +86,5 @@ pipeline {
                      subject: "Build failed: ${currentBuild.fullDisplayName}",
                      to: 'ofekbarel10@gmail.com'
         }
-        always {
-            cleanWs()
-        }
     }
 }
