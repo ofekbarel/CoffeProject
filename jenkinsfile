@@ -57,29 +57,7 @@ pipeline {
             }
         }
 
-        
-
-        //build and push docker image if brnach is main
-        stage ('Build and Push Docker image') {
-            when {
-                branch 'main'
-            }
-            steps {
-                container('docker'){
-                    script {
-                        // Build Docker image
-                        dockerImage = docker.build("${DOCKER_IMAGE}:latest", "--no-cache .")
-
-                        // Push Docker image
-                        docker.withRegistry('https://registry.hub.docker.com', 'ofek-Dockerhub' ) {
-                            dockerImage.push("latest")
-                        }
-                    }
-                }
-            }
-        }
-        
-
+    
 
 
         //test test_app.py inside postgres container if branch is feature
