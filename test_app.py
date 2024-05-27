@@ -6,7 +6,7 @@ from app import current_user
 @pytest.fixture
 def client():
     app.config['TESTING'] = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/users'  # Using a separate test database
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/test'  # Using a separate test database
     with app.test_client() as client:
         with app.app_context():
             db.create_all()
