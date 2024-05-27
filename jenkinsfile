@@ -24,8 +24,16 @@ pipeline {
                   value: "localhost"
               - name: docker
                 image: docker:latest
-                command: ["cat"]
+                command:
+                - cat
                 tty: true
+                volumeMounts:
+                - mountPath: /var/run/docker.sock
+                name: docker-sock
+            volumes:
+            - name: docker-sock
+                hostPath:
+                path: /var/run/docker.sock 
 
 
             '''
@@ -73,6 +81,15 @@ pipeline {
                     sh 'pytest test_app.py'
                 }
                     
+            }
+        }
+
+
+        stage('Build-Docker-Image') {
+            steps {
+                container('docker') {
+                    sh 'docker build -t ss69261/testing-image:latest .'
+                }
             }
         }
     }
