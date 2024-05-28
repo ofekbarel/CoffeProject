@@ -9,7 +9,7 @@ The first page, from here you can go to registration or login
 
 
 
-# Login #
+**Login**
 ![Image alt text](screenShots/login.png)
 
 Guarantees secure access and entry to the user's personal area
@@ -17,7 +17,7 @@ Guarantees secure access and entry to the user's personal area
 
 
 # Register #
-![Image alt text](screenShots/registger.png.png)
+![Image alt text](screenShots/registger.png)
 
 Enables new user registration to the system
 
