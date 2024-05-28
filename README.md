@@ -19,8 +19,8 @@ Guarantees secure access and entry to the user's personal area
 
 
 
-
-
+<!--d -->
+<!--d -->
 **Register**⚡
 ![Image alt text](screenShots/registger.png)
 
