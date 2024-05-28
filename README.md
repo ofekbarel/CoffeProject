@@ -18,9 +18,7 @@ The first page, from here you can go to registration or login
 Guarantees secure access and entry to the user's personal area
 
 
-
-<!--d -->
-<!--d -->
+---
 **Register**⚡
 ![Image alt text](screenShots/registger.png)
 
