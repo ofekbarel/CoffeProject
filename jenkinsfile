@@ -87,7 +87,9 @@ pipeline {
         //test test_app.py inside postgres container if branch is feature
         stage('test') {
             when {
-                branch 'feature'
+                not {
+                    branch 'main'
+                }
             }
             steps{
                 container('postgres') {
@@ -105,7 +107,9 @@ pipeline {
 
         stage('merge request') {
             when {
-                branch 'feature'
+                not {
+                    branch 'main'
+                }
             }
             steps{
                 script {
