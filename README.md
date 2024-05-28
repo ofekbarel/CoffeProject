@@ -1,4 +1,4 @@
-# Coffee Project # 
+# Coffee Project 
 
 Welcome to my coffee recipes website, a website that contains private and public coffee recipes and other functions ! 
 
@@ -149,7 +149,7 @@ Disconnects the user and redirects him to the index page
 
 
 
-# tools 💼
+# tools 💼 
 
 
 In our project we use modern technologies and tools to improve and optimize the development, testing and deployment process.
@@ -184,7 +184,13 @@ In this project we use these tools especially and especially in the various devo
 
 
 
-Development
+## Kubernetes
+  - **azure AKS** : Azure Kubernetes Service (AKS) is a managed Kubernetes service provided by Microsoft Azure. It allows you to deploy, manage, and scale containerized applications using Kubernetes without needing to manage the underlying 
+infrastructure.
+With AKS, you can easily create, configure, and scale Kubernetes clusters in the Azure cloud. It provides integration with other Azure services, such as Azure Active Directory for authentication, Azure Monitor for monitoring, and Azure Container Registry for storing container images.
+
+
+    ![Image alt text](images/kubernetes.png)
 
 
 ## monitoring
@@ -204,12 +210,12 @@ Development
 
 
 
-## Development
-  - **python3** : 
-Python is a popular and versatile programming language created in the early 1990s. It is widely used across various domains such as web development, data analysis, data science, game development, mobile development, and more. One of Python's standout features is its readability and ease of learning, making it a preferred language for both beginner and experienced developers alike.
+
+## Database
+  - **postrges sql** : PostgreSQL, often referred to as Postgres, is a powerful open-source relational database management system (RDBMS). It is known for its reliability, robustness, and extensive features, making it a popular choice for many organizations and applications.
 
 
-    ![Image alt text](images/python.png)
+    ![Image alt text](images/postgres.png)
   
 
 
