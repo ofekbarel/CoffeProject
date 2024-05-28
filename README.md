@@ -149,13 +149,20 @@ Disconnects the user and redirects him to the index page
 
 
 
-## tools 💼
+# tools 💼
 
 
 In our project we use modern technologies and tools to improve and optimize the development, testing and deployment process.
 In this project we use these tools especially and especially in the various devops processes.
 
-- ****Continuous Integration and Delivery****
+
+
+## Continuous Integration and Delivery
+  - **jenkins** : An open-source automation server that enables developers around the world to reliably build, test, and deploy their software. Jenkins orchestrates our CI/CD pipeline, integrating seamlessly with GitHab for a smooth development     
+     process. in this project used with multibranch pipeline t orun diffrent workflows.
+
+    ![Image alt text](images/allRecipes.png)
+  
   
 
 
