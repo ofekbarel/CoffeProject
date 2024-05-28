@@ -2,21 +2,26 @@
 
 Welcome to my coffee recipes website, a website that contains private and public coffee recipes and other functions ! 
 
-**index**
+
+
+**index** ⚡
 ![Image alt text](screenShots/index.png)
 
 The first page, from here you can go to registration or login
 
 
 
-**Login**
+
+**Login** ⚡
 ![Image alt text](screenShots/login.png)
 
 Guarantees secure access and entry to the user's personal area
 
 
 
-# Register #
+
+
+**Register**⚡
 ![Image alt text](screenShots/registger.png)
 
 Enables new user registration to the system
@@ -24,7 +29,9 @@ Enables new user registration to the system
 
 
 
-## dashboard ##
+
+
+**dashboard** ⚡
 ![Image alt text](screenShots/dashboard.png)
 
 The dashboard is the page with the quick access to all the other pages, contains links to all the functions of the site, only a logged in user can enter the dashboard!
@@ -32,7 +39,9 @@ The dashboard is the page with the quick access to all the other pages, contains
 
 
 
-## Add Public Recipe ##
+
+
+**Add Public Recipe** ⚡
 ![Image alt text](screenShots/addPublic.png)
 
 Allows the user to enter information about a public recipe, the information will be accessible to everyone
@@ -40,7 +49,7 @@ Allows the user to enter information about a public recipe, the information will
 
 
 
-## Add Private Recipe ##
+**Add Private Recipe** ⚡
 ![Image alt text](screenShots/addPrivate.png)
 
 Allows only a logged in user to enter a private recipe for him, which is associated with him in the database, using a foreign key
@@ -48,7 +57,7 @@ Allows only a logged in user to enter a private recipe for him, which is associa
 
 
 
-## My Recipes ##
+**My Recipes** ⚡
 ![Image alt text](screenShots/myRecipes.png)
 
 Displays all the private recipes of that user, according to user_id association in the database, therefore the user must be logged in
@@ -57,7 +66,7 @@ Displays all the private recipes of that user, according to user_id association 
 
 
 
-## All Recipes ##
+**All Recipes** ⚡
 ![Image alt text](screenShots/allRecipes.png)
 
 Allows access to the public recipes only, to all users even if they are not logged in
@@ -65,7 +74,7 @@ Allows access to the public recipes only, to all users even if they are not logg
 
 
 
-## Random Recipe ## 
+**Random Recipe** ⚡
 ![Image alt text](screenShots/random.png)
 
 Displays a random recipe from the public recipes in the database
@@ -73,7 +82,7 @@ Displays a random recipe from the public recipes in the database
 
 
 
-## Gallery ##
+**Gallery** ⚡
 ![Image alt text](screenShots/gallery.png)
 
 Shows pictures of different types of coffee
@@ -81,6 +90,6 @@ Shows pictures of different types of coffee
 
 
 
-## Logout ## 
+**Logout** ⚡
 
 Disconnects the user and redirects him to the index page
