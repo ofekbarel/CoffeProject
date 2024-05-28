@@ -3,7 +3,7 @@
 Welcome to my coffee recipes website, a website that contains private and public coffee recipes and other functions ! 
 
 ## index ##
-![Image alt text](screenShot/index.png)
+![Image alt text](screenShots/index.png)
 
 The first page, from here you can go to registration or login
 
