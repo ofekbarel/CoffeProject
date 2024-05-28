@@ -17,7 +17,7 @@ Guarantees secure access and entry to the user's personal area
 
 
 # Register #
-![Image alt text](screenShots/register.png)
+![Image alt text](screenShots/registger.png.png)
 
 Enables new user registration to the system
 
