@@ -160,5 +160,54 @@ In this project we use these tools especially and especially in the various devo
 ## Continuous Integration and Delivery
   - **jenkins** : An open-source automation server that enables developers around the world to reliably build, test, and deploy their software. Jenkins orchestrates our CI/CD pipeline, integrating seamlessly with GitHab for a smooth development     
      process. in this project used with multibranch pipeline t orun diffrent workflows.
+    ![Image alt text](images/jenkins.png)
+
+
+
+
+
+## Containerization and Artifact Storage
+  - **Docker** : Dockerize our application and storing the image, in Dockerhub.
+     allows us to run and deploy the application without conditions and limitations, and to share with group members.
+    ![Image alt text](images/docker.png)
+
+
+
+
+## Deployment
+  - **argocd** : Argo CD is an open-source tool used for managing and automating the operation of applications in Kubernetes. It focuses on easily and safely managing and deploying applications in a Kubernetes environment..
+    When using Argo CD, you define applications through relatively simple and readable YAML.
+    The application definition includes all the necessary information to specify the import and deployment of the application in your Kubernetes environment.
+
+
+    ![Image alt text](images/argocd.png)
+
+
+
+## Kubernetes
+  - **azure AKS** : Azure Kubernetes Service (AKS) is a managed Kubernetes service provided by Microsoft Azure. It allows you to deploy, manage, and scale containerized applications using Kubernetes without needing to manage the underlying 
+infrastructure.
+With AKS, you can easily create, configure, and scale Kubernetes clusters in the Azure cloud. It provides integration with other Azure services, such as Azure Active Directory for authentication, Azure Monitor for monitoring, and Azure Container Registry for storing container images.
+
+
+    ![Image alt text](images/kubernetes.png)
+
+
+## monitoring
+  - **grafana** :Grafana is an open-source analytics and monitoring platform that allows you to query, visualize, alert on, and understand metrics no matter where they are stored. It provides a powerful and flexible platform for creating, exploring, and sharing dashboards and data visualizations.
+
+    ![Image alt text](images/grafana.png)
+
+
+
+
+
+
+- **prometheus** : Prometheus is designed for monitoring the performance and availability of applications and infrastructure. It collects metrics from configured targets at regular intervals, evaluates rule expressions, displays the results, and can trigger alerts if certain conditions are met.
+
+    ![Image alt text](images/prometheus.png)
+
+
+    
 
   
