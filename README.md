@@ -8,10 +8,18 @@ Welcome to my coffee recipes website, a website that contains private and public
 The first page, from here you can go to registration or login
 
 
-<p style="font-size:20px;"><strong>Index</strong></p>
+
+# Login #
 ![Image alt text](screenShots/login.png)
 
 Guarantees secure access and entry to the user's personal area
+
+
+
+# Register #
+![Image alt text](screenShots/register.png)
+
+Enables new user registration to the system
 
 
 
