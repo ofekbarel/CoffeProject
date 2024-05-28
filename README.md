@@ -4,6 +4,8 @@ Welcome to my coffee recipes website, a website that contains private and public
 
 
 ---
+
+
 **index** ⚡
 ![Image alt text](screenShots/index.png)
 
@@ -12,6 +14,8 @@ The first page, from here you can go to registration or login
 
 
 ---
+
+
 **Login** ⚡
 ![Image alt text](screenShots/login.png)
 
