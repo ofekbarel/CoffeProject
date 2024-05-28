@@ -163,7 +163,3 @@ In this project we use these tools especially and especially in the various devo
 
     ![Image alt text](images/allRecipes.png)
   
-  
-
-
-
