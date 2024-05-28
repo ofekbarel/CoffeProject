@@ -208,6 +208,17 @@ With AKS, you can easily create, configure, and scale Kubernetes clusters in the
     ![Image alt text](images/prometheus.png)
 
 
+
+
+
+## Database
+  - **postrges sql** : PostgreSQL, often referred to as Postgres, is a powerful open-source relational database management system (RDBMS). It is known for its reliability, robustness, and extensive features, making it a popular choice for many organizations and applications.
+
+
+    ![Image alt text](images/postrges.png)
+  
+
+
     
 
   
