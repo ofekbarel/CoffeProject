@@ -184,13 +184,7 @@ In this project we use these tools especially and especially in the various devo
 
 
 
-## Kubernetes
-  - **azure AKS** : Azure Kubernetes Service (AKS) is a managed Kubernetes service provided by Microsoft Azure. It allows you to deploy, manage, and scale containerized applications using Kubernetes without needing to manage the underlying 
-infrastructure.
-With AKS, you can easily create, configure, and scale Kubernetes clusters in the Azure cloud. It provides integration with other Azure services, such as Azure Active Directory for authentication, Azure Monitor for monitoring, and Azure Container Registry for storing container images.
-
-
-    ![Image alt text](images/kubernetes.png)
+Development
 
 
 ## monitoring
@@ -206,6 +200,17 @@ With AKS, you can easily create, configure, and scale Kubernetes clusters in the
 - **prometheus** : Prometheus is designed for monitoring the performance and availability of applications and infrastructure. It collects metrics from configured targets at regular intervals, evaluates rule expressions, displays the results, and can trigger alerts if certain conditions are met.
 
     ![Image alt text](images/prometheus.png)
+
+
+
+
+## Development
+  - **python3** : 
+Python is a popular and versatile programming language created in the early 1990s. It is widely used across various domains such as web development, data analysis, data science, game development, mobile development, and more. One of Python's standout features is its readability and ease of learning, making it a preferred language for both beginner and experienced developers alike.
+
+
+    ![Image alt text](images/python.png)
+  
 
 
     
