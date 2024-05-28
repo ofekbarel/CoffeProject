@@ -1,4 +1,4 @@
-# Coffee Project # 
+# Coffee Project 
 
 Welcome to my coffee recipes website, a website that contains private and public coffee recipes and other functions ! 
 
@@ -149,7 +149,7 @@ Disconnects the user and redirects him to the index page
 
 
 
-# tools 💼
+# tools 💼 
 
 
 In our project we use modern technologies and tools to improve and optimize the development, testing and deployment process.
