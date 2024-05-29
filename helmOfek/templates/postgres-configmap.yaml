@@ -1,0 +1,10 @@
+apiVersion: v1     #1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configPostgres }}
+  namespace: default
+  labels:
+    app: {{ .Values.appPostgres }}
+data:
+  POSTGRES_DB: test
+  POSTGRES_USER: postgres

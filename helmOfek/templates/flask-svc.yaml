@@ -1,0 +1,13 @@
+apiVersion: v1      #10
+kind: Service
+metadata:
+  name: {{ .Values.serviceFlask }} #flask-service
+  namespace: default
+spec:
+  ports:
+  - port: {{ .Values.flaskPort }} #5000
+    protocol: TCP
+    targetPort: {{ .Values.flaskPort }} #5000
+  selector:
+    app: {{ .Values.appFlask }} #flask
+  type: LoadBalancer

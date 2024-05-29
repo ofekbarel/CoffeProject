@@ -1,0 +1,15 @@
+appFlask: flask
+configFlask: flask-config
+secretFlask: flask-secret
+flaskImage: ofekbarel11/coffeproject:latest
+flaskPort: 5000
+serviceFlask: flask-service
+
+appPostgres: postgres
+servicePostgres: postgres
+configPostgres: postgres-config
+secretPostgres: postgres-secret
+postgresImage: postgres:14
+postgresPort: 5432
+pvcPostgres: postgres-pv-claim
+pvPostgres: postgres-pv-volume
