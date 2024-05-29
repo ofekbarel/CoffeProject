@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: coffeproject
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ofekbarel/Final-Project
+    targetRevision: HEAD
+    path: ./coffeHelmChart # Path to the helm chart.
+    helm:
+      parameters:
+        - name: image.repository
+          value: ofekbarel11/coffeproject
+        - name: image.tag
+          value: latest
+        - name: image.pullPolicy
+          value: Always
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
