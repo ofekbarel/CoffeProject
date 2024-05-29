@@ -1,0 +1,14 @@
+apiVersion: v1    #6
+kind: Service
+metadata:
+  name: {{ .Values.servicePostgres }} #postgres
+  namespace: default
+spec:
+  selector:
+    app: {{ .Values.appPostgres }} #postgres
+    
+  ports:
+    - protocol: TCP
+      port: {{ .Values.postgresPort }} #5432
+      targetPort: {{ .Values.postgresPort }} #5432
+  type: LoadBalancer

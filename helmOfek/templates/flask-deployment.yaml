@@ -1,0 +1,32 @@
+apiVersion: apps/v1         #9
+kind: Deployment
+metadata:
+  name: {{ .Values.appFlask }} #flask
+  namespace: default
+  labels:
+    app: {{ .Values.appFlask }} #flask
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: {{ .Values.appFlask }} #flask
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appFlask }} #flask
+    spec:
+      containers:
+        - name: {{ .Values.appFlask }} #flask
+          image: {{ .Values.flaskImage }}  #ofekbarel11/coffeproject:latest
+          ports:
+            - containerPort: {{ .Values.flaskPort }} #5000
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configFlask }} #flask-config
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretFlask }} #flask-secret
+                  key: POSTGRES_PASSWORD
+          
