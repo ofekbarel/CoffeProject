@@ -207,6 +207,60 @@ With AKS, you can easily create, configure, and scale Kubernetes clusters in the
 
     ![Image alt text](images/prometheus.png)
 
+  
+---
+
+
+# Run Locally : 🐳
+
+
+## Clone  :
+
+```bash
+git clone https://github.com/ofekbarel/Final-Project.git
+```
+
+## Docker-compose file :
+
+
+```bash
+  version: '3.3'
+services:
+  web:
+    image: ofekbarel11/coffeproject:latest
+    ports:
+      - "5000:5000"
+    environment:
+     - POSTGRES_USER=postgres
+     - POSTGRES_PASSWORD=postgres
+     - HOST=postgres
+
+
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=test
+    #volumes:
+      #- mongodb_data:/data/db
+```
+
+
+## Start the Applicaion :
+
+Go to the project directory
+
+```bash
+  docker-compose up -d
+```
+
+
 
 
 
