@@ -215,7 +215,10 @@ With AKS, you can easily create, configure, and scale Kubernetes clusters in the
 
 
 ## Clone  :
+
+```bash
 git clone https://github.com/ofekbarel/Final-Project.git
+```
 
 ## Docker-compose file :
 
