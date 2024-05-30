@@ -248,7 +248,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=test
     #volumes:
-      #- mongodb_data:/data/db
+      #-postgresql_data:/data/db
 ```
 
 
