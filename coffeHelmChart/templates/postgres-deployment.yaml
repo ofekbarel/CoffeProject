@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.appPostgres }} #postgres
   namespace: default
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: {{ .Values.appPostgres }} #postgres
@@ -16,6 +16,13 @@ spec:
       containers:
         - name: {{ .Values.appPostgres }} #postgres
           image: {{ .Values.postgresImage}}
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
           ports:
             - containerPort: {{ .Values.postgresPort }} #5432
           envFrom:
