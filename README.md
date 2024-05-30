@@ -255,7 +255,8 @@ Go to the project directory
 
 ```bash
   docker-compose up -d
----
+```
+
 
 
     
