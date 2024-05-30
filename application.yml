@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/ofekbarel/Final-Project
     targetRevision: HEAD
-    path: ./coffeHelmChart # Path to the helm chart.
+    path: ./coffehelmChartIngress # Path to the helm chart.
     helm:
       parameters:
         - name: image.repository
