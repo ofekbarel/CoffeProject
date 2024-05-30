@@ -1,0 +1,14 @@
+apiVersion: v1    #4
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.pvcPostgres }} #postgres-pv-claim
+  namespace: default
+  labels:
+    app: {{ .Values.appPostgres }} #postgres
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
