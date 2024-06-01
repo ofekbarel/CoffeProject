@@ -1,7 +1,7 @@
 appFlask: flask
 configFlask: flask-config
 secretFlask: flask-secret
-flaskImage: ofekbarel11/coffeproject:latest
+flaskImage: ofekbarel11/coffeproject:2
 flaskPort: 5000
 serviceFlask: flask-service
 

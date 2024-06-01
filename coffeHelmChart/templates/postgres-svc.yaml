@@ -11,4 +11,4 @@ spec:
     - protocol: TCP
       port: {{ .Values.postgresPort }} #5432
       targetPort: {{ .Values.postgresPort }} #5432
-  type: LoadBalancer
+  type: ClusterIP
